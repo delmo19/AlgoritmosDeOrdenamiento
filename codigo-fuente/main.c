@@ -4,30 +4,28 @@
 #include <sys/time.h>
 #include <time.h>
 #include <locale.h>
-#include "statistics.h"
 
 long diferencia(struct timeval *inicio, struct timeval *final) {
-    long seconds  = final->tv_sec  - inicio->tv_sec;
     long micros   = final->tv_usec - inicio->tv_usec;
-    return seconds * 1000000 + micros;
+    return micros;
 }
 
-void burbuja(int arr[], unsigned n) {
-    int i, j;
+void burbuja(int A[], unsigned n) {
+    int i, j, tem;
 
-    for (i = 0; i < n - 1; i++) {
-        for (j = 0; j < n - 1 - i; j++) {
-            if (arr[j] > arr[j + 1]) {
-                int temp    = arr[j];
-                arr[j]      = arr[j + 1];
-                arr[j + 1]  = temp;
+    for (i = 0; i < n; i++) {
+        for (j = 0; j < n - 1; j++) {
+            if (A[j] > A[j + 1]) {
+                tem = A[j];
+                A[j] = A[j + 1];
+                A[j + 1] = tem;
             }
         }
     }
 }
 
 int main(int argc, char *argv[]) {
-    int i, opt;
+    int i, opt, opc, bucle = 1;
     int *arreglo;
     long tiempo;
     unsigned tam = 0, in = 0, fin = 0;
@@ -73,14 +71,19 @@ int main(int argc, char *argv[]) {
         arreglo[i] = in + rand() % (fin - in + 1);
     }
 
-    lista(tam, in, fin, &arreglo);
+    scanf("%d", &opc);
 
-    gettimeofday(&inicio, NULL);
-    gettimeofday(&final, NULL);
-    tiempo = diferencia(&inicio, &final);
-
-    setlocale(LC_NUMERIC, "");
-    printf("%'ld\n", tiempo);
+    while(bucle) {
+        switch (opc) {
+            case 1:
+                gettimeofday(&inicio, NULL);
+                burbuja(arreglo, tam);
+                gettimeofday(&final, NULL);
+                tiempo = diferencia(&inicio, &final);
+                setlocale(LC_NUMERIC, "");
+                printf("%'ld\n", tiempo);
+        }
+    }
 
     free(arreglo);
     
