@@ -5,6 +5,14 @@
 #include <time.h>
 #include <locale.h>
 
+void imprimir(int A[], unsigned n) {
+    int i;
+
+    for(i = 0; i < n; i++) {
+        printf("%d ", A[i]);
+    }
+}
+
 long diferencia(struct timeval *inicio, struct timeval *final) {
     long micros   = final->tv_usec - inicio->tv_usec;
     return micros;
@@ -22,6 +30,7 @@ void burbuja(int A[], unsigned n) {
             }
         }
     }
+    imprimir(A, n);
 }
 
 int main(int argc, char *argv[]) {
@@ -70,19 +79,20 @@ int main(int argc, char *argv[]) {
     for(i = 0; i < tam; i++) {
         arreglo[i] = in + rand() % (fin - in + 1);
     }
-
-    scanf("%d", &opc);
-
+    
     while(bucle) {
-        switch (opc) {
-            case 1:
-                gettimeofday(&inicio, NULL);
-                burbuja(arreglo, tam);
-                gettimeofday(&final, NULL);
-                tiempo = diferencia(&inicio, &final);
-                setlocale(LC_NUMERIC, "");
-                printf("%'ld\n", tiempo);
-        }
+        imprimir(arreglo, tam);
+        gettimeofday(&inicio, NULL);
+        burbuja(arreglo, tam);
+        gettimeofday(&final, NULL);
+        tiempo = diferencia(&inicio, &final);
+        imprimir(arreglo, tam);
+        setlocale(LC_NUMERIC, "");
+        printf("%'ld\n\n", tiempo);
+
+        printf("Si deseas continuar, presiona 1.");
+        scanf("%d", &opc);
+        if(opc != 1) bucle = 0;
     }
 
     free(arreglo);
