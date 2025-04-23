@@ -46,6 +46,8 @@ int main() {
                 printf("Rango superior inválido.");
             } else break;
         } while (1);
+
+        printf("\n");
     
         arreglo = malloc(tam * sizeof(int));
         arr_burbuja = malloc(tam * sizeof(int));
