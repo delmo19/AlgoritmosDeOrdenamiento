@@ -1,5 +1,5 @@
-#ifndef TIEMPO_H
-#define TIEMPO_H
+#ifndef DIFTIEMPO_H
+#define DIFTIEMPO_H
 
 #include <sys/time.h>
 
