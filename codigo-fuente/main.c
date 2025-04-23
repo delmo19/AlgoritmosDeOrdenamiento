@@ -11,6 +11,7 @@ void imprimir(int A[], unsigned n) {
     for(i = 0; i < n; i++) {
         printf("%d ", A[i]);
     }
+    printf("\n\n");
 }
 
 long diferencia(struct timeval *inicio, struct timeval *final) {
@@ -90,7 +91,7 @@ int main(int argc, char *argv[]) {
         setlocale(LC_NUMERIC, "");
         printf("%'ld\n\n", tiempo);
 
-        printf("Si deseas continuar, presiona 1.");
+        printf("Si deseas continuar, presiona 1.\n");
         scanf("%d", &opc);
         if(opc != 1) bucle = 0;
     }
