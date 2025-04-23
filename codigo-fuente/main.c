@@ -4,6 +4,7 @@
 #include <sys/time.h>
 #include <time.h>
 #include <locale.h>
+#include "burbuja.h"
 
 void imprimir(int A[], unsigned n) {
     int i;
@@ -17,21 +18,6 @@ void imprimir(int A[], unsigned n) {
 long diferencia(struct timeval *inicio, struct timeval *final) {
     long micros   = final->tv_usec - inicio->tv_usec;
     return micros;
-}
-
-void burbuja(int A[], unsigned n) {
-    int i, j, tem;
-
-    for (i = 0; i < n; i++) {
-        for (j = 0; j < n - 1; j++) {
-            if (A[j] > A[j + 1]) {
-                tem = A[j];
-                A[j] = A[j + 1];
-                A[j + 1] = tem;
-            }
-        }
-    }
-    imprimir(A, n);
 }
 
 int main(int argc, char *argv[]) {
