@@ -23,7 +23,6 @@ int main() {
 
         do {
             printf("Ingrese el tamaño del arreglo: ");
-            scanf("%u", &tam);
             if (scanf("%u", &tam) != 1 || tam == 0) {
                 printf("Tamaño inválido.\n");
             } else break;
@@ -39,7 +38,7 @@ int main() {
         do {
             printf("Ingrese el rango superior: ");
             if (scanf("%u", &fin) != 1 || fin < in) {
-                printf("Rango superior inválido.");
+                printf("Rango superior inválido.\n");
             } else break;
         } while (1);
 
@@ -50,7 +49,7 @@ int main() {
         arr_insercion = malloc(tam * sizeof(int));
     
         if (arreglo == NULL || arr_burbuja == NULL || arr_insercion == NULL) {
-            printf("Error al asignar memoria.");
+            printf("Error al asignar memoria.\n");
             exit(1);
         }
     
