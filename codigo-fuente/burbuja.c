@@ -1,3 +1,5 @@
+#include "burbuja.h"
+
 void burbuja(int A[], unsigned n) {
     int i, j, tem;
 

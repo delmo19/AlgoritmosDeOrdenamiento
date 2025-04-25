@@ -1,3 +1,5 @@
+#include "insercion.h"
+
 void insercion(int A[], unsigned n) {
     int i, j, index;
 
