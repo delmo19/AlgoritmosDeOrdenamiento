@@ -12,14 +12,14 @@ int main() {
     srand((unsigned)time(NULL));
 
     unsigned tam, in, fin;
-    int i, opt, opc, bucle = 1;
+    int i, opt;
     int *arreglo, *arr_burbuja, *arr_insercion;
-    long tiempo;
+    long tiempoA, tiempoB;
     struct timeval inicio, final;
 
-    while (bucle) {
+    while (1) {
 
-        // Paso 1, definir el tamaño del arreglo.
+        /* Paso 1: definir el tamaño del arreglo. */
 
         do {
             printf("Ingrese el tamaño del arreglo: ");
@@ -50,16 +50,19 @@ int main() {
     
         if (arreglo == NULL || arr_burbuja == NULL || arr_insercion == NULL) {
             printf("Error al asignar memoria.\n");
+            free(arreglo);
+            free(arr_burbuja);
+            free(arr_insercion);
             exit(1);
         }
     
-        // Paso 2, generar números aleatorios.
+        /* Paso 2: generar números aleatorios. */
 
         for(i = 0; i < tam; i++) {
             arreglo[i] = in + rand() % (fin - in + 1);
         }
 
-        // Paso 3, generar evaluación del desempeño.
+        /* Paso 3: generar evaluación del desempeño. */
 
         memcpy(arr_burbuja, arreglo, tam * sizeof(int));
         memcpy(arr_insercion, arreglo, tam * sizeof(int));
@@ -69,26 +72,33 @@ int main() {
         gettimeofday(&inicio, NULL);
         burbuja(arr_burbuja, tam);
         gettimeofday(&final, NULL);
-        tiempo = diferencia(&inicio, &final);
-        printf("Burbuja: %'ld us\n", tiempo);
-    
+        tiempoA = diferencia(&inicio, &final);
+        
         // Inserción.
-
+        
         gettimeofday(&inicio, NULL);
         insercion(arr_insercion, tam);
         gettimeofday(&final, NULL);
-        tiempo = diferencia(&inicio, &final);
-        printf("Inserción: %'ld us\n", tiempo);
+        tiempoB = diferencia(&inicio, &final);
+        
+        /* Paso 3: presentar resultados: */
+
+        printf("Burbuja: %'ld us\n", tiempoA);
+        printf("Inserción: %'ld us\n", tiempoB);
     
         printf("Si deseas continuar, presiona 1.\n");
-        scanf("%d", &opc);
-        if(opc != 1) bucle = 0;
+        scanf("%d", &opt);
+        if(opt != 1) break;
         printf("\n");
     
         free(arreglo);
         free(arr_burbuja);
         free(arr_insercion);
     }
+
+    free(arreglo);
+    free(arr_burbuja);
+    free(arr_insercion);
     
     return 0;
 }
