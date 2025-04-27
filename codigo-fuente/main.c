@@ -15,7 +15,7 @@
 #include "radix.h"
 
 int main() {
-    setlocale(LC_ALL, "");  // Para compatibilidad regional, si tu sistema lo soporta
+    setlocale(LC_ALL, "");  // Para que los microsegundos se impriman con separación.
     srand((unsigned)time(NULL));
 
     unsigned tam, in, fin;
@@ -145,17 +145,18 @@ int main() {
         gettimeofday(&final, NULL);
         tiempoI = diferencia(&inicio, &final);
 
-        // Resultados
-        printf("Burbuja: %ld us\n", tiempoA);
-        printf("Insercion: %ld us\n", tiempoB);
-        printf("Seleccion: %ld us\n", tiempoC);
-        printf("Merge Sort: %ld us\n", tiempoD);
-        printf("Heap Sort: %ld us\n", tiempoE);
-        printf("Quick Sort: %ld us\n", tiempoF);
-        printf("Bucket Sort: %ld us\n", tiempoG);
-        printf("Counting Sort: %ld us\n", tiempoH);
-        printf("Radix Sort: %ld us\n", tiempoI);
+        // Paso 4: mostrar los resultados.
+        printf("Burbuja: %'ld us\n", tiempoA);
+        printf("Insercion: %'ld us\n", tiempoB);
+        printf("Seleccion: %'ld us\n", tiempoC);
+        printf("Merge Sort: %'ld us\n", tiempoD);
+        printf("Heap Sort: %'ld us\n", tiempoE);
+        printf("Quick Sort: %'ld us\n", tiempoF);
+        printf("Bucket Sort: %'ld us\n", tiempoG);
+        printf("Counting Sort: %'ld us\n", tiempoH);
+        printf("Radix Sort: %'ld us\n", tiempoI);
 
+        // Paso 5: opción para repetir el proceso.
         printf("Si deseas continuar, presiona 1: ");
         if (scanf("%d", &opt) != 1 || opt != 1) break;
         printf("\n");
@@ -171,6 +172,17 @@ int main() {
         free(arr_counting);
         free(arr_radix);
     }
+    
+    free(arreglo);
+    free(arr_burbuja);
+    free(arr_insercion);
+    free(arr_seleccion);
+    free(arr_merge);
+    free(arr_heap);
+    free(arr_quick);
+    free(arr_bucket);
+    free(arr_counting);
+    free(arr_radix);
 
     return 0;
 }
