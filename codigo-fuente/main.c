@@ -156,11 +156,6 @@ int main() {
         printf("Counting Sort: %'ld us\n", tiempoH);
         printf("Radix Sort: %'ld us\n", tiempoI);
 
-        // Paso 5: opción para repetir el proceso.
-        printf("Si deseas continuar, presiona 1: ");
-        if (scanf("%d", &opt) != 1 || opt != 1) break;
-        printf("\n");
-
         free(arreglo);
         free(arr_burbuja);
         free(arr_insercion);
@@ -171,18 +166,12 @@ int main() {
         free(arr_bucket);
         free(arr_counting);
         free(arr_radix);
+        
+        // Paso 5: opción para repetir el proceso.
+        printf("Si deseas continuar, presiona 1: ");
+        if (scanf("%d", &opt) != 1 || opt != 1) break;
+        printf("\n");
     }
     
-    free(arreglo);
-    free(arr_burbuja);
-    free(arr_insercion);
-    free(arr_seleccion);
-    free(arr_merge);
-    free(arr_heap);
-    free(arr_quick);
-    free(arr_bucket);
-    free(arr_counting);
-    free(arr_radix);
-
     return 0;
 }
